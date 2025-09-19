@@ -9,7 +9,7 @@ export class GuestGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(): boolean {
-    const user = this.authService.getUser();
+    const user = this.authService.getCurrentUser(); 
     if (user) {
       this.router.navigate(['/home']);
       return false;
