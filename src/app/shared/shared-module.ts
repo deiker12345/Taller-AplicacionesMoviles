@@ -4,12 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { InputComponent } from 'src/app/shared/component/input-component/input-component';
 import { ToggleTranslateComponent } from 'src/app/shared/component/toggle-translate/toggle-translate.component';
 import { ButtonComponent } from 'src/app/shared/component/button/button.component';
 
 const COMPONENTS = [
-  InputComponent,
   ToggleTranslateComponent,
   ButtonComponent,
 ];
