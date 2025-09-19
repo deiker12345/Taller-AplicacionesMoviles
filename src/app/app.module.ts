@@ -18,7 +18,7 @@ import { SharedModule } from 'src/app/shared/shared-module';
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    SharedModule
+    SharedModule 
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

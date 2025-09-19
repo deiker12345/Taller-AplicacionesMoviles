@@ -12,6 +12,7 @@ import { User } from '../model/user.interface'
 export class AuthService {
   private userSubject = new BehaviorSubject<User | null>(null);
   public user$ = this.userSubject.asObservable();
+  getUser: any;
 
   constructor(
     private afAuth: AngularFireAuth,

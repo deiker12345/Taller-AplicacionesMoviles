@@ -1,36 +1,29 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from 'src/app/shared/Guard/auth.guard';
+import { AuthGuard } from './shared/Guard/auth.guard';
+import { GuestGuard } from './shared/Guard/Guest.Guard';
 
 const routes: Routes = [
-  {
+ {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
+    canActivate: [GuestGuard],
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
     path: 'register',
-    loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterPageModule)
+    canActivate: [GuestGuard],
+    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
   },
   {
     path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule),
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
     canActivate: [AuthGuard]
   },
-  {
-    path: 'update-user',
-    loadChildren: () => import('./pages/update-user/update-user.module').then(m => m.UpdateUserPageModule),
-    canActivate: [AuthGuard]
-  },
-  {
-    path: '**',
-    redirectTo: 'home'
-  },
-
 ];
 
 @NgModule({
@@ -39,4 +32,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
