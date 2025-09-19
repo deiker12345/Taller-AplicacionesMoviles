@@ -9,7 +9,7 @@ import { ButtonComponent } from 'src/app/shared/component/button/button.componen
 
 const COMPONENTS = [
   ToggleTranslateComponent,
-  ButtonComponent,
+  ButtonComponent
 ];
 
 @NgModule({

@@ -1,9 +1,9 @@
 <ion-content class="login-background">
   <div class="login-container">
     <div class="login-card">
-      
+
       <div class="input-group">
-        <label class="input-label">Correo</label>
+        <label class="input-label">{{ 'EMAIL' | translate }}</label>
         <input 
           class="login-input"
           [(ngModel)]="credentials.email" 
@@ -15,7 +15,7 @@
       </div>
 
       <div class="input-group">
-        <label class="input-label">Contraseña</label>
+        <label class="input-label">{{ 'PASSWORD' | translate }}</label>
         <input 
           class="login-input"
           [(ngModel)]="credentials.password" 
@@ -28,25 +28,13 @@
       </div>
 
       <div class="create-account">
-        <a href="#" class="create-link">Create an account</a>
+        <a routerLink="/register" class="create-link">{{ 'CREATE_ACCOUNT' | translate }}</a>
       </div>
 
-      <div class="social-login">
-        <button class="social-btn usa-btn" type="button" [disabled]="isLoading">
-          <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBmaWxsPSIjRkY0MDQwIi8+Cjx0ZXh0IHg9IjEyIiB5PSIxNiIgZmlsbD0iI0ZGRkZGRiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5VU0E8L3RleHQ+Cjwvc3ZnPgo=" alt="USA">
-        </button>
-        
-        <button class="social-btn laptop-btn" type="button" [disabled]="isLoading">
-          <ion-icon name="laptop-outline"></ion-icon>
-        </button>
-        
-        <button class="social-btn google-btn" type="button" [disabled]="isLoading">
-          <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIyLjU2IDEyLjI1QzIyLjU2IDExLjQ3IDIyLjQ5IDEwLjcyIDIyLjM2IDEwSDEyVjE0LjI2SDEzLjAzQzEyLjY1IDE1LjUgMTEuOTkgMTYuNTggMTAuOTYgMTcuMjVWMjAuMjVIMTQuMTNDMTcuOTYgMTYuOCAyMi41NiAxNS4wNSAyMi41NiAxMi4yNVoiIGZpbGw9IiM0Mjg1RjQiLz4KPHBhdGggZD0iTTEyIDI0QzE1LjI0IDI0IDE3Ljk1IDIyLjkyIDIwLjA5IDIwLjI1TDE2LjgyIDE3LjI1QzE1LjggMTcuOTIgMTQuNDQgMTguMjUgMTIgMTguMjVDOC44NyAxOC4yNSA2LjIyIDE1LjkyIDUuMjcgMTIuODVIMi4wOVYxNS44NEM0LjQzIDIwLjQ5IDcuOTYgMjQgMTIgMjRaIiBmaWxsPSIjMzRBODUzIi8+CjxwYXRoIGQ9Ik01LjI3IDEyLjg1QzUuMDIgMTIuMTUgNC44OCAxMS40IDQuODggMTAuNjNTNS4wMiA5LjEgNS4yNyA4LjQxVjUuNDFIMi4wOUM0LjQzIDEwLjE2IDcuOTYgMTQgMTIgMTQiIGZpbGw9IiNGQkJDMDQiLz4KPHBhdGggZD0iTTEyIDEwLjYzQzEzLjY1IDEwLjYzIDE1LjEzIDExLjIzIDE2LjI2IDEyLjMxTDE5LjIzIDkuMzRDMTcuNjggNy44NyAxNS42IDYuOTggMTIgNi45OEM3Ljk2IDYuOTggNC40MyAxMC41MSAyLjA5IDE1LjE2TDUuMjcgMTIuMTZDNi4yMiA5LjA5IDguODcgNi43NSAxMiA2Ljc1WiIgZmlsbD0iI0VBNDMzNSIvPgo8L3N2Zz4K" alt="Google">
-        </button>
-        
-        <button class="social-btn check-btn" type="button" [disabled]="isLoading">
-          <ion-icon name="checkmark"></ion-icon>
-        </button>
+      <div class="language-selector">
+        <button (click)="changeLanguage('en')">🇺🇸</button>
+        <button (click)="changeLanguage('es')">🇪🇸</button>
+        <button (click)="changeLanguage('de')">🇩🇪</button>
       </div>
 
       <button 
@@ -56,8 +44,8 @@
         [disabled]="!credentials.email || !credentials.password || isLoading">
         
         <ion-spinner name="crescent" *ngIf="isLoading" color="light"></ion-spinner>
-        <span *ngIf="!isLoading">LOGIN</span>
-        <span *ngIf="isLoading">INICIANDO...</span>
+        <span *ngIf="!isLoading">{{ 'LOGIN' | translate }}</span>
+        <span *ngIf="isLoading">...</span>
       </button>
 
     </div>

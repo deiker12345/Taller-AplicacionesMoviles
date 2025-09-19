@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { ToastService } from 'src/app/shared/services/toast.service';
+import { ToastNativeService } from 'src/app/shared/services/toast-native.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -10,28 +11,24 @@ import { ToastService } from 'src/app/shared/services/toast.service';
   standalone: false
 })
 export class LoginPage {
-
-  credentials = {
-    email: '',
-    password: ''
-  };
-
+  credentials = { email: '', password: '' };
   isLoading = false;
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private toastService: ToastService
-  ) { }
+    private toastService: ToastNativeService,
+    private translate: TranslateService
+  ) {}
 
   async login(): Promise<void> {
     if (!this.credentials.email || !this.credentials.password) {
-      this.toastService.show('Por favor, completa todos los campos', 'warning');
+      this.toastService.show(this.translate.instant('FIELDS_REQUIRED'), 'warning');
       return;
     }
 
     if (!this.isValidEmail(this.credentials.email)) {
-      this.toastService.show('Por favor, ingresa un email válido', 'warning');
+      this.toastService.show(this.translate.instant('INVALID_EMAIL'), 'warning');
       return;
     }
 
@@ -39,32 +36,33 @@ export class LoginPage {
 
     try {
       await this.authService.login(this.credentials.email, this.credentials.password);
-      this.toastService.show('Inicio de sesión exitoso', 'success');
+      this.toastService.show(this.translate.instant('LOGIN_SUCCESS'), 'success');
+      this.router.navigate(['/home']);
     } catch (error: any) {
       console.error('Error en el inicio de sesión:', error);
-      
-      let errorMessage = 'Error en el inicio de sesión';
-      
+
+      let errorMessage = this.translate.instant('LOGIN_ERROR');
+
       switch (error.code) {
         case 'auth/user-not-found':
-          errorMessage = 'No existe una cuenta con este correo electrónico';
+          errorMessage = this.translate.instant('USER_NOT_FOUND');
           break;
         case 'auth/wrong-password':
-          errorMessage = 'Contraseña incorrecta';
+          errorMessage = this.translate.instant('WRONG_PASSWORD');
           break;
         case 'auth/user-disabled':
-          errorMessage = 'Esta cuenta ha sido deshabilitada';
+          errorMessage = this.translate.instant('USER_DISABLED');
           break;
         case 'auth/too-many-requests':
-          errorMessage = 'Demasiados intentos fallidos. Inténtalo más tarde';
+          errorMessage = this.translate.instant('TOO_MANY_REQUESTS');
           break;
         case 'auth/network-request-failed':
-          errorMessage = 'Error de conexión. Verifica tu internet';
+          errorMessage = this.translate.instant('NETWORK_ERROR');
           break;
         default:
-          errorMessage = error.message || 'Error desconocido';
+          errorMessage = error.message || this.translate.instant('UNKNOWN_ERROR');
       }
-      
+
       this.toastService.show(errorMessage, 'danger');
     } finally {
       this.isLoading = false;
@@ -74,5 +72,9 @@ export class LoginPage {
   private isValidEmail(email: string): boolean {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
+  }
+
+  changeLanguage(lang: string) {
+    this.translate.use(lang);
   }
 }

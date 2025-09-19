@@ -1,0 +1,65 @@
+<ion-content class="register-background">
+  <div class="register-container">
+    <div class="register-card">
+
+      <div class="input-group">
+        <label class="input-label">{{ 'FIRST_NAME' | translate }}</label>
+        <input 
+          class="register-input"
+          [(ngModel)]="userData.firstName"
+          type="text"
+          placeholder="Jane"
+          required>
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">{{ 'LAST_NAME' | translate }}</label>
+        <input 
+          class="register-input"
+          [(ngModel)]="userData.lastName"
+          type="text"
+          placeholder="Doe"
+          required>
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">{{ 'EMAIL' | translate }}</label>
+        <input 
+          class="register-input"
+          [(ngModel)]="userData.email"
+          type="email"
+          placeholder="jane@doe.com"
+          required>
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">{{ 'PASSWORD' | translate }}</label>
+        <input 
+          class="register-input"
+          [(ngModel)]="userData.password"
+          type="password"
+          placeholder="••••••••"
+          required
+          minlength="6">
+      </div>
+
+      <div class="language-selector">
+        <button (click)="changeLanguage('en')">🇺🇸</button>
+        <button (click)="changeLanguage('es')">🇪🇸</button>
+        <button (click)="changeLanguage('de')">🇩🇪</button>
+      </div>
+
+      <button 
+        class="register-button"
+        type="button"
+        (click)="register()"
+        [disabled]="isLoading || !userData.email || !userData.password">
+
+        <ion-spinner name="crescent" *ngIf="isLoading" color="light"></ion-spinner>
+        <span *ngIf="!isLoading">{{ 'REGISTER' | translate }}</span>
+        <span *ngIf="isLoading">...</span>
+      </button>
+
+    </div>
+  </div>
+</ion-content>
