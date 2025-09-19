@@ -1,84 +1,53 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Preferences } from '@capacitor/preferences';
+import { Platform } from '@ionic/angular';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class TranslateConfigService {
-  private readonly LANGUAGE_KEY = 'app_language';
-  private readonly SUPPORTED_LANGUAGES = ['en', 'es'];
-  private readonly DEFAULT_LANGUAGE = 'en';
+@Injectable()
+export class AppTranslateService {
+  supported = ['en', 'es', 'de'];
 
-  constructor(private translate: TranslateService) {
-    this.initTranslate();
+  constructor(private translate: TranslateService, private platform: Platform) {
+    translate.addLangs(this.supported);
+    translate.setDefaultLang('en');
+
+    const deviceLang = this.getDeviceLang();
+    if (deviceLang && this.supported.includes(deviceLang)) {
+      translate.use(deviceLang);
+    } else {
+      translate.use('en');
+    }
   }
 
-  private async initTranslate(): Promise<void> {
-    // Set supported languages
-    this.translate.addLangs(this.SUPPORTED_LANGUAGES);
-    
-    // Set default language
-    this.translate.setDefaultLang(this.DEFAULT_LANGUAGE);
-    
-    // Get saved language or detect device language
-    const savedLanguage = await this.getSavedLanguage();
-    const deviceLanguage = this.getDeviceLanguage();
-    
-    const languageToUse = savedLanguage || deviceLanguage || this.DEFAULT_LANGUAGE;
-    
-    await this.setLanguage(languageToUse);
-  }
-
-  async setLanguage(language: string): Promise<void> {
-    const langToSet = this.SUPPORTED_LANGUAGES.includes(language) 
-      ? language 
-      : this.DEFAULT_LANGUAGE;
-    
-    this.translate.use(langToSet);
-    await this.saveLanguage(langToSet);
-  }
-
-  getCurrentLanguage(): string {
-    return this.translate.currentLang || this.DEFAULT_LANGUAGE;
-  }
-
-  getSupportedLanguages(): string[] {
-    return [...this.SUPPORTED_LANGUAGES];
-  }
-
-  async toggleLanguage(): Promise<string> {
-    const currentLang = this.getCurrentLanguage();
-    const newLang = currentLang === 'en' ? 'es' : 'en';
-    await this.setLanguage(newLang);
-    return newLang;
-  }
-
-  private getDeviceLanguage(): string {
-    const deviceLang = navigator.language.split('-')[0];
-    return this.SUPPORTED_LANGUAGES.includes(deviceLang) 
-      ? deviceLang 
-      : this.DEFAULT_LANGUAGE;
-  }
-
-  private async getSavedLanguage(): Promise<string | null> {
+  private getDeviceLang(): string | null {
     try {
-      const { value } = await Preferences.get({ key: this.LANGUAGE_KEY });
-      return value;
-    } catch (error) {
-      console.error('Error getting saved language:', error);
+      const navLang =
+        (navigator && (navigator.languages && navigator.languages[0])) ||
+        navigator.language ||
+        (navigator as any).userLanguage;
+      if (!navLang) return null;
+      const code = navLang.split('-')[0];
+      return code;
+    } catch {
       return null;
     }
   }
 
-  private async saveLanguage(language: string): Promise<void> {
-    try {
-      await Preferences.set({ 
-        key: this.LANGUAGE_KEY, 
-        value: language 
-      });
-    } catch (error) {
-      console.error('Error saving language:', error);
-    }
+  changeLanguage(lang: string) {
+    if (!this.supported.includes(lang)) lang = 'en';
+    this.translate.use(lang);
+  }
+
+  instant(key: string) {
+    return this.translate.instant(key);
+  }
+
+  getCurrentLanguage() {
+    return this.translate.currentLang || 'en';
+  }
+
+  async toggleLanguage(): Promise<string> {
+    const newLang = this.getCurrentLanguage() === 'en' ? 'es' : 'en';
+    this.changeLanguage(newLang);
+    return newLang;
   }
 }

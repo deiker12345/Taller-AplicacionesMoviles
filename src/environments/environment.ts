@@ -1,15 +1,11 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "TU_API_KEY",
-    authDomain: "TU_PROYECTO.firebaseapp.com",
-    projectId: "TU_PROYECTO",
-    storageBucket: "TU_PROYECTO.appspot.com",
-    messagingSenderId: "1234567890",
-    appId: "1:1234567890:web:xxxxxx"
-  },
-  supabase: {
-    url: "YOUR_SUPABASE_URL",
-    anonKey: "YOUR_SUPABASE_ANON_KEY"
+    apiKey: "AIzaSyA_lWgRat3ISS1YhbphANR9NGRAXZsM3Hg",
+    authDomain: "galery-8f8f2.firebaseapp.com",
+    projectId: "galery-8f8f2",
+    storageBucket: "galery-8f8f2.appspot.com", 
+    messagingSenderId: "649661571154",
+    appId: "1:649661571154:web:2768ba64fd9ce1cfd07f8b"
   }
 };
