@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { ToastNativeService } from 'src/app/shared/services/toast-native.service';
 import { TranslateService } from '@ngx-translate/core';
+import { LoadingService } from 'src/app/shared/services/loading.service';
 
 @Component({
   selector: 'app-register',
@@ -12,25 +13,25 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class RegisterPage {
   userData = {
-    firstName: '',
-    lastName: '',
+    name: '',
     email: '',
     password: ''
   };
 
-  isLoading = false;
+  isLoading = false; // 🔹 Para el botón y el spinner
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private toastService: ToastNativeService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private loadingService: LoadingService
   ) {}
 
   async register(): Promise<void> {
-    const { firstName, lastName, email, password } = this.userData;
+    const { name, email, password } = this.userData;
 
-    if (!firstName || !lastName || !email || !password) {
+    if (!name || !email || !password) {
       this.toastService.show(this.translate.instant('FIELDS_REQUIRED'), 'warning');
       return;
     }
@@ -45,40 +46,19 @@ export class RegisterPage {
       return;
     }
 
-    this.isLoading = true;
+    this.isLoading = true; // 🔹 Activa el spinner
+    await this.loadingService.show(this.translate.instant('REGISTERING'));
 
     try {
-      await this.authService.register(email, password, {
-        displayName: `${firstName} ${lastName}`
-      });
-
+      await this.authService.register(email, password, name);
       this.toastService.show(this.translate.instant('REGISTER_SUCCESS'), 'success');
       this.router.navigate(['/login']);
     } catch (error: any) {
       console.error('Error en el registro:', error);
-
-      let errorMessage = this.translate.instant('REGISTER_ERROR');
-
-      switch (error.code) {
-        case 'auth/email-already-in-use':
-          errorMessage = this.translate.instant('EMAIL_IN_USE');
-          break;
-        case 'auth/invalid-email':
-          errorMessage = this.translate.instant('INVALID_EMAIL');
-          break;
-        case 'auth/operation-not-allowed':
-          errorMessage = this.translate.instant('REGISTER_NOT_ALLOWED');
-          break;
-        case 'auth/weak-password':
-          errorMessage = this.translate.instant('WEAK_PASSWORD');
-          break;
-        default:
-          errorMessage = error.message || this.translate.instant('UNKNOWN_ERROR');
-      }
-
-      this.toastService.show(errorMessage, 'danger');
+      this.toastService.show(error.message || this.translate.instant('REGISTER_ERROR'), 'danger');
     } finally {
-      this.isLoading = false;
+      this.isLoading = false; // 🔹 Desactiva el spinner
+      await this.loadingService.hide();
     }
   }
 

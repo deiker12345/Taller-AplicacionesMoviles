@@ -1,15 +1,18 @@
 export const environment = {
   production: true,
+
+  
+  supabaseUrl: 'https://sfgsvflfzsnnbfbofxiu.supabase.co',
+  supabaseKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNmZ3N2ZmxmenNubmJmYm9meGl1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgzMzg1NjcsImV4cCI6MjA3MzkxNDU2N30.2Xlh6HjBDuq2yh7oHkFkAivPlwLhs-BZweSP5lodU_c',
+
+
   firebase: {
-    apiKey: "YOUR_PROD_API_KEY",
-    authDomain: "YOUR_PROD_AUTH_DOMAIN", 
-    projectId: "YOUR_PROD_PROJECT_ID",
-    storageBucket: "YOUR_PROD_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_PROD_MESSAGING_SENDER_ID",
-    appId: "YOUR_PROD_APP_ID"
-  },
-  supabase: {
-    url: "YOUR_PROD_SUPABASE_URL",
-    anonKey: "YOUR_PROD_SUPABASE_ANON_KEY"
+    apiKey: "AIzaSyDkGeSjiaabV25dLEEqTO0cU9knNxS3zdA",
+    authDomain: "galery-39965.firebaseapp.com",
+    projectId: "galery-39965",
+    storageBucket: "galery-39965.firebasestorage.app",
+    messagingSenderId: "127881959076",
+    appId: "1:127881959076:web:258c10c4330cd8aa47f831"
   }
+
 };

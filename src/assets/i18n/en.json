@@ -1,0 +1,25 @@
+{
+  "EMAIL": "Email",
+  "PASSWORD": "Password",
+  "FIRST_NAME": "First name",
+  "LAST_NAME": "Last name",
+  "CREATE_ACCOUNT": "Create account",
+  "LOGIN": "Login",
+  "REGISTER": "Register",
+
+  "FIELDS_REQUIRED": "Please complete all fields",
+  "INVALID_EMAIL": "Please enter a valid email",
+  "LOGIN_SUCCESS": "Login successful",
+  "LOGIN_ERROR": "Error while logging in",
+  "REGISTER_SUCCESS": "Registration successful, now you can login",
+  "REGISTER_ERROR": "Error while registering",
+  "WEAK_PASSWORD": "Password must be at least 6 characters",
+  "EMAIL_IN_USE": "Email is already in use",
+  "REGISTER_NOT_ALLOWED": "Registration not allowed",
+  "USER_NOT_FOUND": "No account found with this email",
+  "WRONG_PASSWORD": "Incorrect password",
+  "USER_DISABLED": "This account has been disabled",
+  "TOO_MANY_REQUESTS": "Too many attempts, try again later",
+  "NETWORK_ERROR": "Connection error, check your internet",
+  "UNKNOWN_ERROR": "Unknown error"
+}
