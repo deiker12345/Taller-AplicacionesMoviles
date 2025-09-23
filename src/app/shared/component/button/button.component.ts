@@ -1,28 +1,41 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { FilePicker } from '@capawesome/capacitor-file-picker';
 
-@Component({
-  selector: 'app-button',
-  templateUrl: './button.component.html',
-  styleUrls: ['./button.component.scss'],
-  standalone : false
+export interface PickedFile {
+  name: string;
+  blob?: Blob;
+  mimeType?: string;
+  path?: string; 
+}
+
+@Injectable({
+  providedIn: 'root'
 })
-export class ButtonComponent {
-  @Input() text = '';
-  @Input() type: 'button' | 'submit' = 'button';
-  @Input() color = 'primary';
-  @Input() fill: 'solid' | 'outline' | 'clear' = 'solid';
-  @Input() expand: 'full' | 'block' = 'full';
-  @Input() size: 'small' | 'default' | 'large' = 'default';
-  @Input() disabled = false;
-  @Input() loading = false;
-  @Input() icon = '';
-  @Input() iconPosition: 'start' | 'end' = 'start';
+export class FilePickerService {
 
-  @Output() buttonClick = new EventEmitter<void>();
+  constructor() {}
 
-  onClick(): void {
-    if (!this.disabled && !this.loading) {
-      this.buttonClick.emit();
+  async pickFile(): Promise<PickedFile | null> {
+    try {
+      const result = await FilePicker.pickFiles({
+        limit: 1
+      });
+
+      if (result.files && result.files.length > 0) {
+        const file = result.files[0];
+
+        return {
+          name: file.name,
+          blob: file.blob,           
+          mimeType: file.mimeType,   
+          path: file.path           
+        };
+      }
+
+      return null;
+    } catch (error) {
+      console.error('[FilePickerService] Error seleccionando archivo:', error);
+      return null;
     }
   }
 }
