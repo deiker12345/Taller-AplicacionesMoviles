@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Mi Galería</ion-title>
+    <ion-buttons slot="end">
+      
+      <ion-button (click)="logout()">
+        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <div *ngIf="loading" class="ion-text-center ion-padding">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Cargando imágenes...</p>
+  </div>
+
+ 
+  <div *ngIf="!loading && images.length === 0" class="ion-text-center ion-padding">
+    <ion-icon name="images-outline" size="large"></ion-icon>
+    <p>No tienes imágenes aún</p>
+  </div>
+
+ 
+  <ion-grid *ngIf="!loading && images.length > 0">
+    <ion-row>
+      <ion-col size="6" *ngFor="let img of images">
+        <ion-card>
+          <img [src]="img" alt="Imagen de usuario" />
+          <ion-card-content class="ion-text-center">
+           
+            <ion-button size="small" fill="outline" (click)="setAsWallpaper(img)">
+              <ion-icon slot="start" name="color-fill-outline"></ion-icon>
+              Fondo
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+ 
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+   
+    <ion-fab-button color="secondary" (click)="addImage()">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+
+    <ion-fab-list side="top">
+      <ion-fab-button color="danger" (click)="logout()">
+        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>

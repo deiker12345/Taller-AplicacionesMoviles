@@ -1,0 +1,22 @@
+{
+  "EMAIL": "Email",
+  "PASSWORD": "Password",
+  "NAME": "Name",
+  "CREATE_ACCOUNT": "Create account",
+  "LOGIN": "Login",
+  "REGISTER": "Register",
+  "FIELDS_REQUIRED": "All fields are required",
+  "INVALID_EMAIL": "Invalid email address",
+  "WEAK_PASSWORD": "Password must be at least 6 characters",
+  "REGISTERING": "Registering...",
+  "REGISTER_SUCCESS": "Registration successful",
+  "REGISTER_ERROR": "Registration failed",
+  "LOGIN_SUCCESS": "Login successful",
+  "LOGIN_ERROR": "Login failed",
+  "USER_NOT_FOUND": "User not found",
+  "WRONG_PASSWORD": "Incorrect password",
+  "USER_DISABLED": "User account is disabled",
+  "TOO_MANY_REQUESTS": "Too many attempts. Try again later",
+  "NETWORK_ERROR": "Network error",
+  "UNKNOWN_ERROR": "Unknown error"
+}

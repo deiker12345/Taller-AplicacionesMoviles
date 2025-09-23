@@ -1,0 +1,17 @@
+export const environment = {
+  production: false,
+
+  supabaseUrl: 'https://sfgsvflfzsnnbfbofxiu.supabase.co',
+  supabaseKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNmZ3N2ZmxmenNubmJmYm9meGl1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgzMzg1NjcsImV4cCI6MjA3MzkxNDU2N30.2Xlh6HjBDuq2yh7oHkFkAivPlwLhs-BZweSP5lodU_c',
+
+  supabaseBucket: 'gallery',
+  firebase: {
+    apiKey: "AIzaSyDMlBiaA1SOhGxL-tkvG8Zc6FYyZgpgLko",
+    authDomain: "gallery-edb69.firebaseapp.com",
+    projectId: "gallery-edb69",
+    storageBucket: "gallery-edb69.firebasestorage.app",
+    messagingSenderId: "131837204923",
+    appId: "1:131837204923:web:95388cbadda79fc7970c9e",
+    measurementId: "G-QR8KHTYC50"
+  }
+};

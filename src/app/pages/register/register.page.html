@@ -1,0 +1,34 @@
+<ion-content class="register-background">
+  <div class="register-container">
+    <div class="register-card">
+
+      <div class="input-group">
+        <label class="input-label">{{ 'NAME' | translate }}</label>
+        <input class="register-input" [(ngModel)]="userData.name" type="text" placeholder="Jane Doe" required>
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">{{ 'EMAIL' | translate }}</label>
+        <input class="register-input" [(ngModel)]="userData.email" type="email" placeholder="jane@doe.com" required>
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">{{ 'PASSWORD' | translate }}</label>
+        <input class="register-input" [(ngModel)]="userData.password" type="password" placeholder="••••••••" required minlength="6">
+      </div>
+
+      <app-toggle-translate></app-toggle-translate>
+
+      <button class="register-button" type="button" (click)="register()"
+        [disabled]="isLoading || !userData.email || !userData.password || !userData.name">
+        <ion-spinner name="crescent" *ngIf="isLoading" color="light"></ion-spinner>
+        <span *ngIf="!isLoading">{{ 'REGISTER' | translate }}</span>
+        <span *ngIf="isLoading">...</span>
+      </button>
+
+      <app-link-component [text]="'¿Ya tienes una cuenta?'" [linkText]="'Inicia sesión'" [linkTo]="'/login'">
+      </app-link-component>
+
+    </div>
+  </div>
+</ion-content>

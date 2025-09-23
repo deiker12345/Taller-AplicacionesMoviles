@@ -1,0 +1,35 @@
+<ion-content class="login-background">
+  <div class="login-container">
+    <div class="login-card">
+
+      <div class="input-group">
+        <label class="input-label">{{ 'EMAIL' | translate }}</label>
+        <input class="login-input" [(ngModel)]="credentials.email" type="email" placeholder="jane@doe.com" required
+          autocomplete="email" [disabled]="isLoading">
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">{{ 'PASSWORD' | translate }}</label>
+        <input class="login-input" [(ngModel)]="credentials.password" type="password" placeholder="••••••••" required
+          minlength="6" autocomplete="current-password" [disabled]="isLoading">
+      </div>
+
+      <div class="create-account">
+        <a routerLink="/register" class="create-link">{{ 'CREATE_ACCOUNT' | translate }}</a>
+      </div>
+
+      <app-toggle-translate></app-toggle-translate>
+
+      <button class="login-button" type="button" (click)="login()"
+        [disabled]="!credentials.email || !credentials.password || isLoading">
+        <ion-spinner name="crescent" *ngIf="isLoading" color="light"></ion-spinner>
+        <span *ngIf="!isLoading">{{ 'LOGIN' | translate }}</span>
+        <span *ngIf="isLoading">...</span>
+      </button>
+
+      <app-link-component [text]="'¿No tienes cuenta?'" [linkText]="'Regístrate'" [linkTo]="'/register'">
+      </app-link-component>
+
+    </div>
+  </div>
+</ion-content>

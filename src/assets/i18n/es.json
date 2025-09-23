@@ -1,0 +1,22 @@
+{
+  "EMAIL": "Correo electrónico",
+  "PASSWORD": "Contraseña",
+  "NAME": "Nombre",
+  "CREATE_ACCOUNT": "Crear cuenta",
+  "LOGIN": "Iniciar sesión",
+  "REGISTER": "Registrarse",
+  "FIELDS_REQUIRED": "Todos los campos son obligatorios",
+  "INVALID_EMAIL": "Correo inválido",
+  "WEAK_PASSWORD": "La contraseña debe tener mínimo 6 caracteres",
+  "REGISTERING": "Registrando...",
+  "REGISTER_SUCCESS": "Registro exitoso",
+  "REGISTER_ERROR": "Error al registrarse",
+  "LOGIN_SUCCESS": "Inicio de sesión exitoso",
+  "LOGIN_ERROR": "Error al iniciar sesión",
+  "USER_NOT_FOUND": "Usuario no encontrado",
+  "WRONG_PASSWORD": "Contraseña incorrecta",
+  "USER_DISABLED": "Cuenta de usuario deshabilitada",
+  "TOO_MANY_REQUESTS": "Demasiados intentos. Inténtalo más tarde",
+  "NETWORK_ERROR": "Error de red",
+  "UNKNOWN_ERROR": "Error desconocido"
+}

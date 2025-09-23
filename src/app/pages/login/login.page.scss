@@ -1,0 +1,127 @@
+/* Fondo general del login */
+.login-background {
+  --background: linear-gradient(135deg, #6a11cb, #2575fc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Contenedor centrado */
+.login-container {
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Tarjeta de login */
+.login-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 30px 25px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Grupo de inputs */
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  color: #333333;
+}
+
+.login-input {
+  padding: 12px 15px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.login-input:focus {
+  border-color: #2575fc;
+  box-shadow: 0 0 8px rgba(37, 117, 252, 0.3);
+}
+
+/* Link para crear cuenta */
+.create-account {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 0.9rem;
+}
+
+.create-link {
+  color: #2575fc;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.create-link:hover {
+  text-decoration: underline;
+}
+
+/* Botón de login */
+.login-button {
+  margin-top: 10px;
+  background: #2575fc;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.login-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.login-button:hover:not(:disabled) {
+  background: #1a5bcc;
+}
+
+/* Spinner dentro del botón */
+.login-button ion-spinner {
+  margin-right: 10px;
+}
+
+/* Link de registro debajo del botón */
+app-link-component {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+app-link-component a {
+  color: #2575fc;
+  font-weight: 600;
+  margin-left: 5px;
+  text-decoration: none;
+}
+
+app-link-component a:hover {
+  text-decoration: underline;
+}
